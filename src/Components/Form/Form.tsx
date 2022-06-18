@@ -2,6 +2,8 @@ import React, {ChangeEvent} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../store";
 import {setDish, setName, setTime} from "../../features/form/form-slice";
+import {StandardInput} from "../common/StandardInput/StandardInput";
+import {SelectInput} from "../common/SelectInput/SelectInput";
 
 export const OrderForm = ()=>{
     const dispatch = useDispatch();
@@ -17,41 +19,36 @@ export const OrderForm = ()=>{
         }
     }
     return (<form>
-        <label>
-            Dish name:
-            <input
-                type="text"
-                name="name"
-                value={name}
-                onChange={(e)=> updateData(e, 'name')}
-                required
-            />
-        </label><br/>
-        <label>
-            Preparation time:
-            <input
-                type="time"
-                name="time"
-                placeholder="00:00:00"
-                value={time}
-                step="1"
-                onChange={(e)=> updateData(e, 'time')}
-                required
-            />
-        </label><br/>
-        <label>
-            Type:
-            <select
-                name="dish"
-                value={dish}
-                onChange={(e)=> updateData(e, 'dish')}
-                required
-            >
-                <option value="pizza">Pizza</option>
-                <option value="soup">Soup</option>
-                <option value="sandwich">Sandwich</option>
-            </select>
-        </label><br/>
+        <StandardInput
+            className="standardInput"
+            text="Dish name"
+            type="text"
+            value={name}
+            required={true}
+            potentialBr={true}
+            function={(e: ChangeEvent<HTMLInputElement>) => updateData(e, 'name')}
+        /><br/>
+        <StandardInput
+            className="standardInput"
+            text="Preparation time"
+            type="time"
+            value={time}
+            step="1"
+            potentialBr={true}
+            required={true}
+            function={(e: ChangeEvent<HTMLInputElement>) => updateData(e, 'time')}
+        /><br/>
+
+        <SelectInput
+            className="selectInput"
+            text="Dish Type"
+            name="dish"
+            value={dish}
+            potentialBr={true}
+            required={true}
+            options={['Pizza', 'Soup', 'Sandwich']}
+        /><br/>
+        <h1>{dish}</h1>
         <button>Order now!</button>
     </form>)
 }
