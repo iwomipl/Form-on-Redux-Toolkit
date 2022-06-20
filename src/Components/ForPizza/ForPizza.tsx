@@ -38,10 +38,8 @@ export const ForPizza = ()=>{
             potentialBr={true}
             step="any"
             min={0}
-            placeholder="Float number."
+            placeholder="Float number with coma."
             function={(e: ChangeEvent<HTMLInputElement>) => updateData(e, 'diameter')}
         /><br/>
-        <h1>{no_of_slices}</h1>
-        <h1>{diameter}</h1>
     </>
 }

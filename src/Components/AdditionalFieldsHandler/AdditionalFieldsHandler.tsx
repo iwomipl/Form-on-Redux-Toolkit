@@ -3,6 +3,8 @@ import {SelectInput} from "../common/SelectInput/SelectInput";
 import {useSelector} from "react-redux";
 import {RootState} from "../../store";
 import {ForPizza} from "../ForPizza/ForPizza";
+import {ForSoup} from "../ForSoup/ForSoup";
+import {ForSandwich} from "../ForSandwich/ForSandwich";
 
 export const AdditionalFieldsHandler = () => {
     const {dish} = useSelector((store: RootState) => store.orderForm);
@@ -31,8 +33,8 @@ export const AdditionalFieldsHandler = () => {
             options={['---', 'Pizza', 'Soup', 'Sandwich']}
         /><br/>
         {addedField === 'Pizza' && <ForPizza/>   }
-        {addedField === 'Soup' && <h4>{addedField}</h4>}
-        {addedField === 'Sandwich' && <h4>{addedField}</h4>}
+        {addedField === 'Soup' && <ForSoup/>}
+        {addedField === 'Sandwich' && <ForSandwich/>}
         {addedField === '---' && null}
     </>
 }
