@@ -7,27 +7,27 @@ import {ForSoup} from "../ForSoup/ForSoup";
 import {ForSandwich} from "../ForSandwich/ForSandwich";
 
 export const AdditionalFieldsHandler = () => {
-    const {dish} = useSelector((store: RootState) => store.orderForm);
+    const {type} = useSelector((store: RootState) => store.orderForm);
     const [addedField, setAddedField] = useState('');
 
     useEffect(() => {
-        if (dish === 'Pizza') {
+        if (type === 'Pizza') {
             setAddedField('Pizza')
-        } else if (dish === 'Soup') {
+        } else if (type === 'Soup') {
             setAddedField('Soup')
-        } else if (dish === 'Sandwich') {
+        } else if (type === 'Sandwich') {
             setAddedField('Sandwich')
-        } else if (dish === '---') {
+        } else if (type === '---') {
             setAddedField('---')
         }
-    }, [dish])
+    }, [type])
 
     return <>
         <SelectInput
             className="selectInput"
             text="Dish Type"
-            name="dish"
-            value={dish}
+            name="type"
+            value={type}
             potentialBr={true}
             required={true}
             options={['---', 'Pizza', 'Soup', 'Sandwich']}

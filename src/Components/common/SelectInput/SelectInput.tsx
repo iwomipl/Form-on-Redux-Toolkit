@@ -1,5 +1,5 @@
 import React, {ChangeEvent} from "react";
-import {setDish} from "../../../features/form/form-slice";
+import {setType} from "../../../features/form/form-slice";
 import {useDispatch} from "react-redux";
 
 interface Props {
@@ -19,8 +19,8 @@ export const SelectInput = (props: Props)=> {
     const arrOfOptions = props.options;
 
     const updateData = (e: ChangeEvent<HTMLSelectElement>, name: string)=>{
-        if (name === 'dish') {
-            dispatch(setDish(e.target.value));
+        if (name === 'type') {
+            dispatch(setType(e.target.value));
         }
     }
 
@@ -29,9 +29,10 @@ export const SelectInput = (props: Props)=> {
         <select
             value={props.value}
             required={props.required}
+            name={props.name}
             onChange={(e)=> updateData(e, `${props.name}`)}
         >
-        {arrOfOptions.map(option=> <option value={option}>{option}</option>)}
+        {arrOfOptions.map(option=> <option value={option} key={option}>{option}</option>)}
         </select>
     </label>
 }

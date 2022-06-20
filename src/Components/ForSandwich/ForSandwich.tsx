@@ -18,9 +18,10 @@ export const ForSandwich = () => {
     return <>
         <StandardInput
             className="standardInput"
-            text="slices_of_bread"
+            text="How many slices of Bread"
+            name="slices_of_bread"
             type="number"
-            value={slices_of_bread || 1}
+            value={slices_of_bread}
             required={true}
             potentialBr={true}
             min={1}

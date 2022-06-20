@@ -18,9 +18,10 @@ export const ForSoup = () => {
     return <>
         <StandardInput
             className="standardInput"
-            text="spiciness_scale"
+            text="How Spicy (1-10)"
+            name="spiciness_scale"
             type="number"
-            value={spiciness_scale || 10}
+            value={spiciness_scale}
             required={true}
             potentialBr={true}
             min={1}

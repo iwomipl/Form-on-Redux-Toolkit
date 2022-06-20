@@ -1,4 +1,4 @@
-import React, {ChangeEvent} from "react";
+import React, {ChangeEvent, FormEvent} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../store";
 import {setName, setTime} from "../../features/form/form-slice";
@@ -7,7 +7,7 @@ import {AdditionalFieldsHandler} from "../AdditionalFieldsHandler/AdditionalFiel
 
 export const OrderForm = ()=>{
     const dispatch = useDispatch();
-    const {name, time } = useSelector((store: RootState )=> store.orderForm );
+    const {name, time, type, no_of_slices, diameter, spiciness_scale, slices_of_bread} = useSelector((store: RootState )=> store.orderForm );
 
     const updateData = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>, name: string)=>{
         if (name === 'name') {
@@ -16,10 +16,29 @@ export const OrderForm = ()=>{
             dispatch(setTime(e.target.value));
         }
     }
-    return (<form>
+
+    const handleSubmit = async (e: FormEvent)=>{
+        e.preventDefault();
+        try {
+            if (type === 'Pizza'){
+                console.log(name, time, type, no_of_slices, diameter)
+            }
+            if (type === 'Soup'){
+                console.log(name, time, type, spiciness_scale)
+            }
+            if (type === 'Sandwich'){
+                console.log(name, time, type, slices_of_bread)
+            }
+        } catch (err){
+            console.log(err)
+        }
+
+    }
+    return (<form onSubmit={handleSubmit}>
         <StandardInput
             className="standardInput"
             text="Dish name"
+            name="name"
             type="text"
             value={name}
             required={true}
@@ -29,6 +48,7 @@ export const OrderForm = ()=>{
         <StandardInput
             className="standardInput"
             text="Preparation time"
+            name="preparation_time "
             type="time"
             value={time}
             step="1"
@@ -36,7 +56,6 @@ export const OrderForm = ()=>{
             required={true}
             function={(e: ChangeEvent<HTMLInputElement>) => updateData(e, 'time')}
         /><br/>
-
         <AdditionalFieldsHandler/><br/>
         <button>Order now!</button>
     </form>)

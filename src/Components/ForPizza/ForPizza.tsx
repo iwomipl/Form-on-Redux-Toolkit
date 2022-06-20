@@ -20,9 +20,10 @@ export const ForPizza = ()=>{
     return <>
         <StandardInput
             className="standardInput"
-            text="no_of_slices"
+            text="How many slices"
+            name="no_of_slices"
             type="number"
-            value={no_of_slices || 1}
+            value={no_of_slices}
             required={true}
             potentialBr={true}
             min={1}
@@ -31,7 +32,8 @@ export const ForPizza = ()=>{
         /><br/>
         <StandardInput
             className="standardInput"
-            text="diameter"
+            text="Pizza's diameter"
+            name="diameter"
             type="number"
             value={diameter}
             required={true}

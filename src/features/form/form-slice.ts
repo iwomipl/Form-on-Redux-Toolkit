@@ -3,7 +3,7 @@ import {createSlice} from "@reduxjs/toolkit";
 interface FormState {
     name: string;
     time: string;
-    dish: string;
+    type: string;
     no_of_slices?: number;
     diameter?: number;
     spiciness_scale?: number;
@@ -13,7 +13,11 @@ interface FormState {
 const initialState: FormState ={
     name: '',
     time: '00:00:00',
-    dish: '',
+    type: '',
+    no_of_slices: 1,
+    diameter: 20,
+    spiciness_scale: 5,
+    slices_of_bread: 1,
 }
 
 interface SetName{
@@ -22,7 +26,7 @@ interface SetName{
 interface SetTime{
     payload: string;
 }
-interface SetDish{
+interface SetType{
     payload: string;
 }
 interface Set_no_of_slices{
@@ -48,8 +52,8 @@ export const formSlice = createSlice({
         setTime: (state, action: SetTime)=>{
             state.time = action.payload;
         },
-        setDish: (state, action: SetDish)=>{
-            state.dish = action.payload;
+        setType: (state, action: SetType)=>{
+            state.type = action.payload;
         },
         set_no_of_slices: (state, action: Set_no_of_slices)=>{
             state.no_of_slices = action.payload;
@@ -67,4 +71,4 @@ export const formSlice = createSlice({
 })
 
 
-export const {setName, setTime, setDish, set_no_of_slices, set_diameter, set_spiciness_scale, set_slices_of_bread} = formSlice.actions;
+export const {setName, setTime, setType, set_no_of_slices, set_diameter, set_spiciness_scale, set_slices_of_bread} = formSlice.actions;

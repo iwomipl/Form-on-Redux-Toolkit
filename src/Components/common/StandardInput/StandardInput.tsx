@@ -2,6 +2,7 @@ import React, {ChangeEvent} from "react";
 
 export interface Props {
     className: string;
+    name: string;
     text: string;
     type: string;
     placeholder?: string;
