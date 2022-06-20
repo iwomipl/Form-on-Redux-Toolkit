@@ -1,10 +1,13 @@
 import React, {ChangeEvent} from "react";
 
-interface Props {
+export interface Props {
     className: string;
     text: string;
     type: string;
-    value: string | number;
+    placeholder?: string;
+    min?: number;
+    max?: number;
+    value?: string | number;
     potentialBr?: boolean;
     step?: string;
     required?: boolean;
@@ -18,6 +21,9 @@ export const StandardInput = (props: Props)=>(
             type={props.type}
             value={props.value}
             step={props.step || ""}
+            min={props.min || ""}
+            max={props.max || ""}
+            placeholder={props.placeholder || ""}
             onChange={props.function}
             required={props.required}
         />
