@@ -11,12 +11,12 @@ export const AdditionalFieldsHandler = () => {
     const [addedField, setAddedField] = useState('');
 
     useEffect(() => {
-        if (type === 'Pizza') {
-            setAddedField('Pizza')
-        } else if (type === 'Soup') {
-            setAddedField('Soup')
-        } else if (type === 'Sandwich') {
-            setAddedField('Sandwich')
+        if (type === 'pizza') {
+            setAddedField('pizza')
+        } else if (type === 'soup') {
+            setAddedField('soup')
+        } else if (type === 'sandwich') {
+            setAddedField('sandwich')
         } else if (type === '---') {
             setAddedField('---')
         }
@@ -30,11 +30,11 @@ export const AdditionalFieldsHandler = () => {
             value={type}
             potentialBr={true}
             required={true}
-            options={['---', 'Pizza', 'Soup', 'Sandwich']}
+            options={['---', 'pizza', 'soup', 'sandwich']}
         /><br/>
-        {addedField === 'Pizza' && <ForPizza/>   }
-        {addedField === 'Soup' && <ForSoup/>}
-        {addedField === 'Sandwich' && <ForSandwich/>}
+        {addedField === 'pizza' && <ForPizza/>   }
+        {addedField === 'soup' && <ForSoup/>}
+        {addedField === 'sandwich' && <ForSandwich/>}
         {addedField === '---' && null}
     </>
 }

@@ -1,33 +1,40 @@
 import React, {ChangeEvent, FormEvent} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../store";
-import {setName, setTime} from "../../features/form/form-slice";
+import {setName, set_preparation_time} from "../../features/form/form-slice";
 import {StandardInput} from "../common/StandardInput/StandardInput";
 import {AdditionalFieldsHandler} from "../AdditionalFieldsHandler/AdditionalFieldsHandler";
+import {fetchFunction} from "../../utils/fetchFunction";
 
 export const OrderForm = ()=>{
     const dispatch = useDispatch();
-    const {name, time, type, no_of_slices, diameter, spiciness_scale, slices_of_bread} = useSelector((store: RootState )=> store.orderForm );
+    const {name, preparation_time, type, no_of_slices, diameter, spiciness_scale, slices_of_bread} = useSelector((store: RootState )=> store.orderForm );
 
     const updateData = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>, name: string)=>{
         if (name === 'name') {
             dispatch(setName(e.target.value));
-        } else if (name === 'time') {
-            dispatch(setTime(e.target.value));
+        } else if (name === 'preparation_time') {
+            dispatch(set_preparation_time(e.target.value));
         }
     }
 
     const handleSubmit = async (e: FormEvent)=>{
         e.preventDefault();
         try {
-            if (type === 'Pizza'){
-                console.log(name, time, type, no_of_slices, diameter)
+            if (type === 'pizza'){
+                await fetchFunction({
+                    name, preparation_time, type, no_of_slices, diameter
+                })
             }
-            if (type === 'Soup'){
-                console.log(name, time, type, spiciness_scale)
+            if (type === 'soup'){
+                await fetchFunction({
+                    name, preparation_time, type, spiciness_scale
+                })
             }
-            if (type === 'Sandwich'){
-                console.log(name, time, type, slices_of_bread)
+            if (type === 'sandwich'){
+                await fetchFunction({
+                    name, preparation_time, type, slices_of_bread
+                })
             }
         } catch (err){
             console.log(err)
@@ -50,11 +57,11 @@ export const OrderForm = ()=>{
             text="Preparation time"
             name="preparation_time "
             type="time"
-            value={time}
+            value={preparation_time}
             step="1"
             potentialBr={true}
             required={true}
-            function={(e: ChangeEvent<HTMLInputElement>) => updateData(e, 'time')}
+            function={(e: ChangeEvent<HTMLInputElement>) => updateData(e, 'preparation_time')}
         /><br/>
         <AdditionalFieldsHandler/><br/>
         <button>Order now!</button>
