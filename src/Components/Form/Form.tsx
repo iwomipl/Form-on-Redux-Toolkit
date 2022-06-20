@@ -1,21 +1,19 @@
 import React, {ChangeEvent} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "../../store";
-import {setDish, setName, setTime} from "../../features/form/form-slice";
+import {setName, setTime} from "../../features/form/form-slice";
 import {StandardInput} from "../common/StandardInput/StandardInput";
-import {SelectInput} from "../common/SelectInput/SelectInput";
+import {AdditionalFieldsHandler} from "../AdditionalFieldsHandler/AdditionalFieldsHandler";
 
 export const OrderForm = ()=>{
     const dispatch = useDispatch();
-    const {name, time, dish } = useSelector((store: RootState )=> store.orderForm );
+    const {name, time } = useSelector((store: RootState )=> store.orderForm );
 
     const updateData = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>, name: string)=>{
         if (name === 'name') {
             dispatch(setName(e.target.value));
         } else if (name === 'time') {
             dispatch(setTime(e.target.value));
-        }else if (name === 'dish') {
-            dispatch(setDish(e.target.value));
         }
     }
     return (<form>
@@ -39,16 +37,7 @@ export const OrderForm = ()=>{
             function={(e: ChangeEvent<HTMLInputElement>) => updateData(e, 'time')}
         /><br/>
 
-        <SelectInput
-            className="selectInput"
-            text="Dish Type"
-            name="dish"
-            value={dish}
-            potentialBr={true}
-            required={true}
-            options={['Pizza', 'Soup', 'Sandwich']}
-        /><br/>
-        <h1>{dish}</h1>
+        <AdditionalFieldsHandler/><br/>
         <button>Order now!</button>
     </form>)
 }
