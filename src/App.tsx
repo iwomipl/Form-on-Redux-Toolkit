@@ -1,7 +1,7 @@
 import React from 'react';
 import {Provider} from 'react-redux';
 import './App.css';
-import {OrderForm} from './Components/Form/Form';
+import {OrderForm} from './Components/OrderForm/OrderForm';
 import {store} from "./store";
 
 function App() {

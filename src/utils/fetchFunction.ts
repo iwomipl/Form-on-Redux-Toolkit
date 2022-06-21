@@ -1,6 +1,6 @@
 import {FormState} from "../features/form/form-slice";
 
-interface ReturnedFromAPI {
+export interface ReturnedFromAPI {
     message: string;
 }
 export const fetchFunction = async (formObject: FormState): Promise<ReturnedFromAPI | FormState> => {
@@ -19,6 +19,8 @@ export const fetchFunction = async (formObject: FormState): Promise<ReturnedFrom
         const result = await fetch(`${path}`, fetchObj);
         if (result.status === 200 || (result.status === 400)) {
             const data = await result.json();
+
+            //data is redundant, but easier to read
             return data;
         } else  {
             return {

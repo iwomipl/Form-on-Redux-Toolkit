@@ -14,8 +14,6 @@ interface Props {
 
 export const SelectInput = (props: Props)=> {
     const dispatch = useDispatch();
-    // const { dish } = useSelector((store: RootState )=> store.orderForm );
-    // @TODO might be usefull later, if not delete
     const arrOfOptions = props.options;
 
     const updateData = (e: ChangeEvent<HTMLSelectElement>, name: string)=>{
