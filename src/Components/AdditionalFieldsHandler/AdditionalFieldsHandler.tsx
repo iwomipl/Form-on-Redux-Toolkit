@@ -32,7 +32,7 @@ export const AdditionalFieldsHandler = () => {
             required={true}
             options={['---', 'pizza', 'soup', 'sandwich']}
         /><br/>
-        {addedField === 'pizza' && <ForPizza/>   }
+        {addedField === 'pizza' && <ForPizza/>}
         {addedField === 'soup' && <ForSoup/>}
         {addedField === 'sandwich' && <ForSandwich/>}
         {addedField === '---' && null}

@@ -23,6 +23,7 @@ export const OrderForm = () => {
 
     useEffect(() => setShowForm(true), [])
 
+        //Function to update state onChange of form
     const updateData = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>, name: string) => {
         if (name === 'name') {
             dispatch(setName(e.target.value));
@@ -38,22 +39,19 @@ export const OrderForm = () => {
                 alert('No dish is ready in 00:00:00. Change time of preparation to send Order.');
             } else {
                 try {
-                    if (type === 'pizza') {
-                        setReturnedObj(await fetchFunction({
-                            name, preparation_time, type, no_of_slices, diameter
-                        }));
-                    }
-                    if (type === 'soup') {
-                        setReturnedObj(await fetchFunction({
-                            name, preparation_time, type, spiciness_scale
-                        }));
+                    //Pizza
+                    type === 'pizza' && setReturnedObj(await fetchFunction({
+                        name, preparation_time, type, no_of_slices, diameter
+                    }));
+                    //Soup
+                    type === 'soup' && setReturnedObj(await fetchFunction({
+                        name, preparation_time, type, spiciness_scale
+                    }));
+                    //Sandwich
+                    type === 'sandwich' && setReturnedObj(await fetchFunction({
+                        name, preparation_time, type, slices_of_bread
+                    }));
 
-                    }
-                    if (type === 'sandwich') {
-                        setReturnedObj(await fetchFunction({
-                            name, preparation_time, type, slices_of_bread
-                        }));
-                    }
                 } catch (err) {
                     setReturnedObj(err as ReturnedFromAPI);
                     console.log(err)
