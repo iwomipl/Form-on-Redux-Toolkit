@@ -33,29 +33,35 @@ export const OrderForm = () => {
 
     const handleSubmit = async (e: FormEvent) => {
         e.preventDefault();
-        try {
-            if (type === 'pizza') {
-                setReturnedObj(await fetchFunction({
-                    name, preparation_time, type, no_of_slices, diameter
-                }));
+        if (type !== '---') {
+            if (preparation_time === '00:00:00') {
+                alert('No dish is ready in 00:00:00. Change time of preparation to send Order.');
+            } else {
+                try {
+                    if (type === 'pizza') {
+                        setReturnedObj(await fetchFunction({
+                            name, preparation_time, type, no_of_slices, diameter
+                        }));
+                    }
+                    if (type === 'soup') {
+                        setReturnedObj(await fetchFunction({
+                            name, preparation_time, type, spiciness_scale
+                        }));
+
+                    }
+                    if (type === 'sandwich') {
+                        setReturnedObj(await fetchFunction({
+                            name, preparation_time, type, slices_of_bread
+                        }));
+                    }
+                } catch (err) {
+                    setReturnedObj(err as ReturnedFromAPI);
+                    console.log(err)
+                }
                 setShowForm(false);
             }
-            if (type === 'soup') {
-                setReturnedObj(await fetchFunction({
-                    name, preparation_time, type, spiciness_scale
-                }));
-                setShowForm(false);
-            }
-            if (type === 'sandwich') {
-                setReturnedObj(await fetchFunction({
-                    name, preparation_time, type, slices_of_bread
-                }));
-                setShowForm(false)
-            }
-        } catch (err) {
-            setReturnedObj(err as ReturnedFromAPI);
-            setShowForm(false);
-            console.log(err)
+        } else {
+            alert('You should choose Dish type.')
         }
 
     }

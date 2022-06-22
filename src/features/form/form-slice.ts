@@ -13,7 +13,7 @@ export interface FormState {
 const initialState: FormState ={
     name: '',
     preparation_time: '00:00:00',
-    type: '',
+    type: '---',
     no_of_slices: 1,
     diameter: 20,
     spiciness_scale: 5,

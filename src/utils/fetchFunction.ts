@@ -30,7 +30,7 @@ export const fetchFunction = async (formObject: FormState): Promise<ReturnedFrom
     }catch(err){
         console.error(err);
         return {
-            message: "Something else is wrong."
+            message: "Something is wrong."
         }
     }
 }
